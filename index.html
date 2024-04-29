@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casino Web App</title>
+    <title>BloclchainBets</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,6 +19,10 @@
             margin-bottom: 20px;
             text-align: center;
         }
+        .user-info {
+            text-align: right;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -33,8 +37,9 @@
             <button type="submit">Login</button>
         </form>
         {% else %}
-        <div style="text-align: right;">
+        <div class="user-info">
             <p>Welcome, {{ current_user }}</p>
+            <p>Your Pi Coin Balance: {{ pi_balance }}</p>
             <form action="/logout" method="post">
                 <button type="submit">Logout</button>
             </form>
