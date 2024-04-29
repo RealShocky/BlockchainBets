@@ -1,68 +1,79 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, session, flash
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, EqualTo, ValidationError
 from werkzeug.security import generate_password_hash, check_password_hash
-
-# Import the Pi Coin SDK
-# Replace "pi_coin_sdk" with the actual name of the Pi Coin SDK package
-import pi_coin_sdk
+from pi_network import PiNetwork
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'
 
-# Dummy database to store user information
-users = []
+class RegistrationForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    pi_wallet_address = StringField('Pi Coin Wallet Address', validators=[DataRequired()])
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name = StringField('Last Name', validators=[DataRequired()])
+    country = StringField('Country', validators=[DataRequired()])
+    submit = SubmitField('Register')
 
-# Initialize Pi Coin SDK
-pi_sdk = pi_coin_sdk.PiCoinSDK()
+    def validate_pi_wallet_address(form, field):
+        pi_network = PiNetwork()
+        pi_network.initialize()
+        try:
+            balance = pi_network.get_balance(field.data)
+            if balance <= 0:
+                raise ValidationError('Invalid Pi Coin wallet address')
+        except Exception as e:
+            raise ValidationError('Error validating Pi Coin wallet address')
 
-# List of countries where online gambling is allowed
-allowed_countries = ['US', 'UK', 'Canada', 'Australia']  # Add more countries as needed
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if 'username' not in session:
+        return redirect('/login')
+    else:
+        pi_network = PiNetwork()
+        try:
+            pi_network.initialize()
+            pi_balance = pi_network.get_balance()
+            return render_template('index.html', username=session['username'], pi_balance=pi_balance)
+        except Exception as e:
+            error_message = str(e)
+            return render_template('error.html', error_message=error_message)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        wallet_address = request.form['wallet_address']
-        verify_wallet_address = request.form['verify_wallet_address']
-        first_name = request.form['first_name']
-        last_name = request.form['last_name']
-        country = request.form['country']
-        
-        # Check if username is already taken
-        if any(user['username'] == username for user in users):
-            return 'Username is already taken!', 400
-        
-        # Check if wallet address and verify wallet address match
-        if wallet_address != verify_wallet_address:
-            return 'Wallet addresses do not match!', 400
-        
-        # Verify wallet address using Pi Coin SDK
-        if not pi_sdk.verify_wallet(wallet_address):
-            return 'Invalid wallet address!', 400
-        
-        # Check if online gambling is allowed in the chosen country
-        if country not in allowed_countries:
-            return 'Online gambling is not allowed in your country!', 400
-        
-        # Hash the password before storing it
-        hashed_password = generate_password_hash(password)
-        
-        # Store the user information in the database
-        users.append({
-            'username': username,
-            'password': hashed_password,
-            'wallet_address': wallet_address,
-            'first_name': first_name,
-            'last_name': last_name,
-            'country': country
-        })
-        
-        return redirect(url_for('index'))
-    
-    return render_template('register.html')
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        session['username'] = form.username.data
+        flash('Registration successful', 'success')
+        return redirect('/')
+    return render_template('register.html', form=form)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.username.data == 'admin' and form.password.data == 'password':
+            session['username'] = form.username.data
+            flash('Login successful', 'success')
+            return redirect('/')
+        else:
+            flash('Invalid username or password', 'error')
+            return redirect('/login')
+    return render_template('login.html', form=form)
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    flash('You have been logged out', 'info')
+    return redirect('/login')
 
 if __name__ == '__main__':
     app.run(debug=True)
