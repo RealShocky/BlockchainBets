@@ -4,8 +4,8 @@ from stellar_sdk.server import Server
 
 class PiNetwork:
     def __init__(self):
-        self.api_key = os.environ.get("API_KEY")
-        self.wallet_private_key = os.environ.get("WALLET_PRIVATE_KEY")
+        self.api_key = os.environ.get("xycst2xcqgvhamvcpjuemmjbym7lixzdf5l2tazov0ldph9a7shpu4dda315khot")
+        self.wallet_private_key = os.environ.get("SAIU3MHM7O4LAW4GSZY7T7QZS6FQTGCMDQHOR7SBHGJVKZD3MLQRWZVR")
         self.network = os.environ.get("NETWORK")
         self.server = None
         self.keypair = None
