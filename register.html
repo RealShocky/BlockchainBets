@@ -4,38 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .tile {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .user-info {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .navigation {
+            margin-bottom: 20px;
+        }
+        .navigation a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Register</h1>
-    <form method="post">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
+    <div class="container">
+        <!-- Navigation links -->
+        <div class="navigation">
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+            <!-- Add more navigation links as needed -->
+        </div>
         
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        
-        <label for="wallet_address">Pi Coin Wallet Address:</label><br>
-        <input type="text" id="wallet_address" name="wallet_address" required><br><br>
-        
-        <label for="verify_wallet_address">Verify Pi Coin Wallet Address:</label><br>
-        <input type="text" id="verify_wallet_address" name="verify_wallet_address" required><br><br>
-        
-        <label for="first_name">First Name:</label><br>
-        <input type="text" id="first_name" name="first_name" required><br><br>
-        
-        <label for="last_name">Last Name:</label><br>
-        <input type="text" id="last_name" name="last_name" required><br><br>
-        
-        <label for="country">Country:</label><br>
-        <select id="country" name="country" required>
-            <option value="" selected disabled>Select Country</option>
-            <!-- Add options for different countries here -->
-            <option value="US">United States</option>
-            <option value="UK">United Kingdom</option>
-            <!-- Add more options as needed -->
-        </select><br><br>
-        
-        <button type="submit">Register</button>
-    </form>
+        <!-- Registration form -->
+        <h1>Register</h1>
+        <form method="post">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br><br>
+            
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+            
+            <label for="wallet_address">Pi Coin Wallet Address:</label><br>
+            <input type="text" id="wallet_address" name="wallet_address" required><br><br>
+            
+            <label for="verify_wallet_address">Verify Pi Coin Wallet Address:</label><br>
+            <input type="text" id="verify_wallet_address" name="verify_wallet_address" required><br><br>
+            
+            <label for="first_name">First Name:</label><br>
+            <input type="text" id="first_name" name="first_name" required><br><br>
+            
+            <label for="last_name">Last Name:</label><br>
+            <input type="text" id="last_name" name="last_name" required><br><br>
+            
+            <label for="country">Country:</label><br>
+            <select id="country" name="country" required>
+                <option value="" selected disabled>Select Country</option>
+                <!-- Add options for different countries here -->
+                <option value="US">United States</option>
+                <option value="UK">United Kingdom</option>
+                <!-- Add more options as needed -->
+            </select><br><br>
+            
+            <button type="submit">Register</button>
+        </form>
+    </div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlockchainBets</title>
+    <title>Cashier</title>
     <style>
         /* CSS styles */
         body {
@@ -77,18 +77,21 @@
         </div>
         {% endif %}
         
-        {% if current_user %}
-        <!-- Access cashier page only if user is logged in -->
-        <a href="/cashier">Cashier</a>
+        {% if not current_user %}
+        <p>You must be logged in to access the Cashier.</p>
+        {% else %}
+        <!-- Cashier content here -->
+        <h2>Cashier</h2>
+        <div class="tile">
+            <h3>Deposit</h3>
+            <!-- Deposit form content -->
+        </div>
+        <div class="tile">
+            <h3>Withdraw</h3>
+            <!-- Withdraw form content -->
+        </div>
         {% endif %}
         
-        <h2>Lottery Game</h2>
-        <div class="tile">
-            <h3>Lottery</h3>
-            <!-- Add lottery game content here -->
-            <p>Play the lottery game here...</p>
-        </div>
-
         <!-- Additional sections (optional) -->
         <div class="lottery-game">
             <!-- Add more game options or information here -->

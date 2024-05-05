@@ -4,31 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
             font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
         }
         .container {
-            margin-top: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .alert {
+        .tile {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .user-info {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .lottery-game {
+            border-top: 1px solid #ccc;
+            margin-top: 30px;
+            padding-top: 20px;
+        }
+        .error-code {
+            font-size: 24px;
+            color: #ff0000;
+            margin-bottom: 10px;
+        }
+        .error-description {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .suggestion {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .contact-info {
             margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="alert alert-danger" role="alert">
-                    <h4 class="alert-heading">Error!</h4>
-                    <p>{{ error_message }}</p>
-                    <hr>
-                    <p class="mb-0">Please try again later or contact support.</p>
-                </div>
+        <h2>Error</h2>
+        <div class="tile">
+            <div class="error-code">Error Code: 500</div>
+            <div class="error-description">
+                <p>Oops! Something went wrong...</p>
+                <p>An error occurred while processing your request.</p>
             </div>
+            <div class="suggestion">
+                <p>Please try again later or contact support for assistance.</p>
+            </div>
+            <div class="contact-info">
+                <p>Contact Support:</p>
+                <p>Email: mark.varkevisser@execs.com</p>
+            </div>
+            <form action="/">
+                <button type="submit">Go Back to Home</button>
+            </form>
         </div>
     </div>
 </body>
