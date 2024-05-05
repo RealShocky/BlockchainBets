@@ -14,7 +14,7 @@ app.secret_key = 'your_secret_key'  # Change this to a secure secret key
 users = []
 
 # Initialize Pi Network
-pi_network.initialize()
+#pi_network.initialize()
 
 # List of countries where online gambling is allowed
 allowed_countries = ['US', 'UK', 'Canada', 'Australia']  # Add more countries as needed
