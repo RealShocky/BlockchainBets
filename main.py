@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from pi_network import PiNetwork
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = 'SAIU3MHM7O4LAW4GSZY7T7QZS6FQTGCMDQHOR7SBHGJVKZD3MLQRWZVR'
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
