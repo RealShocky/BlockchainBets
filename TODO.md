@@ -13,7 +13,6 @@
 - [ ] Implement automated ticket drawing mechanism
 - [ ] Develop leaderboard to track user winnings
 - [ ] Integrate referral program for user acquisition
-- [ ] Explore adding support for fiat currency deposits
 - [ ] Implement two-factor authentication for added security
 - [ ] Conduct security audit and vulnerability testing
 - [ ] Expand platform to support additional gambling games
