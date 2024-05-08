@@ -8,7 +8,6 @@
 - [ ] Improve error handling and user feedback
 - [ ] Optimize code for performance
 - [ ] Write unit tests for critical functions
-- [ ] Add support for multiple cryptocurrencies
 
 ## Future Tasks
 - [ ] Implement automated ticket drawing mechanism
