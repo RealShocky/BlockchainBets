@@ -84,9 +84,25 @@
         
         <h2>Lottery Game</h2>
         <div class="tile">
+            <h3>Prize Pool: {{ prize_pool }}</h3>
+            <p>Next Drawing: {{ next_drawing }}</p>
+        </div>
+
+        <div class="tile">
             <h3>Lottery</h3>
-            <!-- Add lottery game content here -->
-            <p>Play the lottery game here...</p>
+            <!-- Lottery ticket form -->
+            <form action="/buy_ticket" method="post">
+                <label for="number1">Choose 3 Numbers:</label><br>
+                <input type="number" id="number1" name="number1" min="0" max="9" required>
+                <input type="number" id="number2" name="number2" min="0" max="9" required>
+                <input type="number" id="number3" name="number3" min="0" max="9" required><br><br>
+                <button type="submit">Buy Ticket</button>
+            </form>
+            <hr>
+            <p>Or</p>
+            <form action="/buy_random_ticket" method="post">
+                <button type="submit">Get Random Ticket</button>
+            </form>
         </div>
 
         <!-- Additional sections (optional) -->

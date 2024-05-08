@@ -6,14 +6,15 @@ import stellar_sdk as s_sdk
 
 class PiNetwork:
     def __init__(self):
-        self.api_key = os.environ.get('PI_API_KEY')
+        # Load API key and network from environment variables
+        self.api_key = os.environ.get('PI_API_KEY', '')
+        self.network = os.environ.get('PI_NETWORK', ' ')
         self.client = None
-        self.account = None
+        self.account = ''
         self.base_url = os.environ.get('PI_BASE_URL', "https://api.minepi.com")
         self.open_payments = {}
-        self.network = os.environ.get('PI_NETWORK')
         self.server = None
-        self.keypair = None
+        self.keypair = ''
         self.fee = None
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.DEBUG)  # Set logging level to DEBUG
