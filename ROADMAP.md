@@ -11,7 +11,6 @@
 - Enhance ticket purchasing process with automated drawing mechanism
 - Implement leaderboard to track user winnings and participation
 - Introduce referral program to incentivize user acquisition
-- Explore support for additional cryptocurrencies beyond Pi Network
 - Integrate two-factor authentication for enhanced security
 
 ## Milestone 3: Platform Expansion (Q4 2024)
